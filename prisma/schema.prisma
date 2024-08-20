@@ -1,0 +1,19 @@
+datasource db {
+  provider = "mysql"
+  url      = env("MYSQL_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Roast {
+  id        Int      @id @default(autoincrement())
+  username  String   @map("username")
+  response  String
+  createdAt DateTime @default(now())
+  country   String
+  language  String
+
+  @@index([username], name: "username_idx")
+}
